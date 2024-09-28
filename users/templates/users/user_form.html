@@ -1,0 +1,14 @@
+{% extends 'client/base.html' %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-sm-5 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <a class="btn btn-success" href="{% url 'users:user_form' %}" role="button">Зарегистрироваться</a>
+                </div>
+            </div>
+</form>
+{% endblock %}

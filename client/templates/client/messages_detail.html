@@ -1,0 +1,32 @@
+{% extends 'client/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm">
+<!--            <img src="{{ product.image | media_filter }}">-->
+            <div class="card-body">
+              <p class="card-text">Тема письма: {{object.topic}}</p>
+              <p class="card-text">Тело письма: {{object.text}}</p>
+              <p class="card-text">Пользователь, добавивший товар: {{object.user}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                {% for message in object.message_set.all %}
+                <li>{{ subject }}</li>
+                {% endfor %}
+                <div class="btn-group">
+                  <a class="btn btn-dark" href="{% url 'client:messages_list' %}" role="button">Назад</a>
+                  {% if request.user == object.user %}
+                            <a class="btn btn-warning" href="{% url 'client:messages_update' object.pk %}" role="button">Редактировать</a>
+                  <a class="btn btn-danger" href="{% url 'client:messages_delete' object.pk %}" role="button">Удалить</a>
+                            {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

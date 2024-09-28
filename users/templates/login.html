@@ -1,0 +1,27 @@
+{% extends 'client/base.html' %}
+
+{% block content %}
+<div class="col 12">
+    <form class="row" method="post" enctype="multipart/form-data">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <h3 class="card-header">
+                            <div class="card-title">Вход</div>
+                        </h3>
+                        <div class="card-body">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-success">Войти</button>
+                            <a class="btn btn-danger" href="{% url 'users:reset_password' %}" role="button">Восстановить пароль</a>
+                        </div>
+                    </body>
+                    </html>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

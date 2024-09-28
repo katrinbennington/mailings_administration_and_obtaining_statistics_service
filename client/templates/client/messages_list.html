@@ -1,0 +1,41 @@
+{% extends 'client/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        {% for messages in object_list %}
+        <div class="col">
+          <div class="card shadow-sm">
+<!--            <img src="{{ object.image | media_filter }}">-->
+            <div class="card-body">
+              <p class="card-text">{{ messages.topic }}</p>
+                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                        <li>- Описание товара: {{messages.text}}</li>
+                        <li> Пользователь: {{messages.user}}</li>
+<!--                    </ul>-->
+<!--                    {% if object.version.all %}-->
+<!--                    {% for version in object.version.all %}-->
+<!--                    <ul class="list-unstyled mt-3 mb-4 text-start m-3">-->
+<!--                        {% if version.current_version %}-->
+<!--                        <li> Название версии: {{version.version_name}}</li>-->
+<!--                        <li> Номер версии: {{version.version_number}}</li>-->
+<!--                        {% endif %}-->
+<!--                    </ul>-->
+<!--                    {% endfor %}-->
+<!--                    {% else %}-->
+<!--                    <li> Нет активной версии</li>-->
+<!--                    {% endif %}-->
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="btn-group">
+                            <a class="btn btn-success" href="{% url 'client:messages_detail' messages.pk %}" role="button">Посмотреть</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
+{% endblock %}

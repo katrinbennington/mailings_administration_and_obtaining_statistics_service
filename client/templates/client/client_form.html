@@ -1,0 +1,47 @@
+{% extends 'client/base.html' %}
+
+{% block content %}
+ <form class="row" method="post" enctype="multipart/form-data">
+<div class="row ">
+    <div class="col-sm-5 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Добавление клиента
+            </div>
+            <div class="card-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-success">
+                        {% if object %}
+                        Сохранить
+                        {% else %}
+                        Добавить
+                        {% endif %}
+                    </button>
+                <button type="submit" class="btn btn-dark">
+                    Назад
+                    </button>
+            </div>
+        </div>
+    </div>
+    {% if object %}
+    <div class="col-sm-5 col-md-6">
+        <div class="card">
+            <div class="card-header">
+                Добавление рассылки
+            </div>
+            <div class="card-body">
+                {{ formset.management_form }}
+                {% for form in formset.forms %}
+                {{ form.as_p }}
+                {% if not forloop.last %}
+                    <hr>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+</form>
+{% endblock %}
