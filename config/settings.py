@@ -146,6 +146,8 @@ SERVER_EMAIL = EMAIL_HOST_USER
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 LOGIN_URL = reverse_lazy('users:login')
 
+APSCHEDULER_DATETIME_FORMAT = "N j, Y, f:s a"
+APSCHEDULER_RUN_NOW_TIMEOUT = 25
 
 CACHE_ENABLED = True
 
@@ -166,7 +168,7 @@ CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
 
 CELERY_BEAT_SCHEDULE = {
     'check_inactive_users': {
-        'task': 'users.tasks.ТУТ НАЗВАНИЕ ТАСКИ ТИПА ДЕФА',  # Путь к задаче
+        'task': 'users.tasks.sub_update',  # Путь к задаче
         'schedule': timedelta(seconds=10),  # Расписание выполнения задачи (например, каждые 10 минут)
     },
 }
